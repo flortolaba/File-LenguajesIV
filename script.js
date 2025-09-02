@@ -1,4 +1,3 @@
-// Botón de lectura
 document.getElementById("leer").addEventListener("click", leerArchivo);
 
 function leerArchivo() {
@@ -6,13 +5,11 @@ function leerArchivo() {
   const file = input.files[0]; // Archivo seleccionado
 
   if (file) {
-    // Mostramos propiedades del archivo
     document.getElementById("info").innerText =
       `Nombre: ${file.name}\nTamaño: ${file.size} bytes\nTipo: ${file.type}`;
 
     const reader = new FileReader();
 
-    // Si es archivo de texto
     if (file.type.startsWith("text")) {
       reader.onload = function(e) {
         document.getElementById("contenido").innerText = e.target.result;
@@ -21,7 +18,6 @@ function leerArchivo() {
       reader.readAsText(file, "UTF-8");
     }
 
-    // Si es imagen
     else if (file.type.startsWith("image")) {
       reader.onload = function(e) {
         document.getElementById("preview").src = e.target.result;
@@ -31,7 +27,6 @@ function leerArchivo() {
       reader.readAsDataURL(file);
     }
 
-    // Otro tipo de archivo
     else {
       document.getElementById("contenido").innerText =
         "No se puede mostrar este tipo de archivo.";
